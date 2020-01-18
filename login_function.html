@@ -1,4 +1,4 @@
-<!-- Created Jan 13, 2020 -->
+<!DOCTYPE html>
 <html>
     <head>
         <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
@@ -9,8 +9,37 @@
     </head>
     <body >
         <h1 id="welcomeMsg"></h1>
-            <p id="uid"></p>
-            <button onclick="signin()">Sign in</button>
-            <div id="info"></div>
+        <p id="uid"></p>
+        <div id="info"></div>
+        <div class="card">
+            <button class="login-btn" onclick="signin()">
+                <img src="Img/login_1.png" class="img-bottom">
+                <img src="Img/login_2.png" class="img-top">
+            </button>
+        </div>
     </body>
 </html>
+
+<style>
+    .card {
+        margin: auto;
+        /* border: 1px solid black; */
+        width:60%;
+        text-align: center;
+    }
+    .card .img-top {
+        display: none;
+    }
+    .card:hover .img-top {
+        display:inline-block;
+    }
+    .card .img-bottom {
+        display: inline;
+    }
+    .card:hover .img-bottom {
+        display:none;
+    }
+    .login-btn{
+        border: none;
+    }
+</style>
