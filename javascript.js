@@ -1,5 +1,4 @@
-// Your web app's Firebase configuration
-//Back-end javascript stuff
+//--------------------Firebase javascript stuff--------------------\\
 var firebaseConfig = {
         apiKey: "AIzaSyCYNDNxnGUOAD6g9N1GhpfgbBiq_-O_7BU",
         authDomain: "trivianight-b4745.firebaseapp.com",
@@ -15,7 +14,7 @@ var firebaseConfig = {
     // Check to see if you are logged in
     firebase.auth().onAuthStateChanged(function(user) {
         if (user == null) {
-            document.getElementById("welcomeMsg").innerHTML = "Sign up with Google";
+            document.getElementById("welcomeMsg").innerHTML = "Log in with Google";
             return;
         } else {
             userId = user.uid;
@@ -56,7 +55,17 @@ var firebaseConfig = {
         });
     }
 
-//Front-end javascript stuff
+    function signout() {
+        firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+        }).catch(function(error) {
+            // An error happened.
+        });
+        location.reload();
+        window.location.href = "login_function.html"
+    }
+
+//--------------------Front-end javascript stuff--------------------\\
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
   }
