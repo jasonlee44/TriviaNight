@@ -1,62 +1,265 @@
 <html>
-  <head>
+
+<head>
     <title>Trivia Night</title>
-    <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
-    <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <!-- Your web app's Firebase configuration -->
-    <script src="javascript.js"></script>
-    <!-- External CSS File -->
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-      <header>
-          <div class="container">
-            <h1 class="logo"></h1>
-            <nav>
-              <form>
-              <ul>
-                <li class="leftpos"><a href="#">Logo  </a></li>
-                <input type="text" name="search" placeholder="Search.." class="leftpos">
-                <li><a href="#">Name</a></li>
-                <li><a href="#">Home</a></li>
-                <li><span style="font-size:30px;cursor:pointer" onclick="openNav()"><font family="calibri" size="3" color="#444">Friends</font></span></li>
-              </ul>
-              </form>
-            </nav>
-          </div>
-        </header>
+</head>
 
-        <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Clients</a>
-          <a href="#">Contact</a>
-        </div>
 
-        <div class="sectionleft">
-        <h4><font size="4"> (pic) James </font></h4>
-        <div class="sectionleft2">
-        <p><font size="3"> Trivia Games</font></p>
-        <p> () Books</p>
-        <p> () Film </p>
-        <p> () Music</p>
-        <p> () Television</p>
-        <p> ()Video Games</p>
-        <p> () Board Games</p>
-        <p> () Science and Nature</p>
-        <p> () Computers</p>
-        <p> () Math</p>
-        <p> () Sports</p>
-        <p> () Geography</p>
-        <p> () History</p>
-        <p> () Politics</p>
-        <p> () Art</p>
-        <p> () Animals</p> 
+
+<body>
+
+
+    <header>
+        <div class="container">
+          <h1 class="logo"></h1>
+          <nav>
+            <form>
+            <ul>
+              <li class="leftpos"><a href="#">Logo  </a></li>
+              <input type="text" name="search" placeholder="Search.." class="leftpos">
+              <li><a href="#">Name</a></li>
+              <li><a href="#">Home</a></li>
+              <li><span style="font-size:30px;cursor:pointer" onclick="openNav()"><font family="calibri" size="3" color="#444">Friends</font></span></li>
+            </ul>
+             </form>
+          </nav>
         </div>
+      </header>
+
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
       </div>
 
-      <button onclick="signout()">Sign Out</button>
-  </body>
+
+      <div class="sectionleft">
+       <h4><font size="4"> (pic) James </font></h4>
+      <div class="sectionleft2">
+      <p><font size="3"> Trivia Games</font></p>
+      
+      <button style="width:205px; text-align:left;" class="btn"> <img src="http://www.myiconfinder.com/uploads/iconsets/93d6a0d17d38f2153741af30cad5b41e.png" width="30px" length="30px" align="left"> Books</button><br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="http://abctechnologies.com/wp-content/uploads/icon-film.png" width="30px" lengths="30px" align="middle"> Film </button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/512/Music-icon.png" width="30px" lengths="30px" align="middle"> Music </button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="http://icons.iconarchive.com/icons/flat-icons.com/flat/256/Flat-TV-icon.png" width="30px" lengths="30px" align="middle"> Television</button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/gamecontroller-512.png" width="30px" lengths="30px" align="middle"> Video Games</button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="https://image.flaticon.com/icons/png/512/119/119572.png" width="30px" lengths="30px" align="middle"> Science and Nature </button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="https://i.ya-webdesign.com/images/circle-icons-png-2.png" width="30px" lengths="30px" align="middle"> Computers</button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="https://image.flaticon.com/icons/png/512/746/746960.png" width="30px" lengths="30px" align="middle"> Math</button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="https://images.vexels.com/media/users/3/144783/isolated/preview/f228a3c63f9c58b3550c5734536d7954-american-football-jersey-icon-by-vexels.png" width="30px" lengths="30px" align="middle"> Sports</button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="https://cdn3.iconfinder.com/data/icons/education-and-knowledge-2/155/vector_218_02-01-512.png" width="30px" lengths="30px" align="middle"> Geography</button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="https://cdn4.iconfinder.com/data/icons/flat-icon-set/2133/flat_icons-graficheria.it-10.png" width="30px" lengths="30px" align="middle"> History</button> <br>
+      <button style="width:205px; text-align:left;" class="btn"> <img src="https://image.flaticon.com/icons/png/512/194/194623.png" width="30px" lengths="30px" align="middle"> Animals</button> <br>
+      </div>
+    </div>
+    <div class="section-middle">
+      <p>pepe lorge</p>
+
+    </div>
+
+
+
+</body>
+
+
+
+<style>
+
+.sectionleft {
+    width: 30%;
+    padding-left: 37px;
+    font-family: verdana;
+    float:left;
+}
+
+.sectionleft2 {
+  padding-left: 23px;
+}
+
+.section-middle {
+  float:left;
+
+}
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+body {
+	margin: 0;
+	background: #e1e4eb;
+	font-family: 'Calibri', sans-serif;
+	font-weight: 500;
+}
+
+.container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+header {
+  background: lightblue;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  float: right;
+  padding: 10px 0;
+}
+
+.leftpos {
+  float:left;
+
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+
+  position: relative;
+}
+
+nav a {
+  color: #444;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+
+
+
+
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 20px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  padding-right: 0px;
+}
+
+input[type=text]:focus {
+  width: 80%;
+
+}
+
+
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.btn {
+  background-color: #e1e4eb;
+  border: none;
+  border-radius: 4px;
+  color: black;
+  padding: 6px 24px;
+  padding-left: 9px;
+  font-size: 15px;
+  margin: 4px 2px;
+  transition: 0.21s;
+}
+
+.btn:hover {
+  background-color: white;
+  color: black;
+  text-emphasis: bold;
+}
+
+</style>
+
+
+
+<script>
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+</script>
+
 </html>
