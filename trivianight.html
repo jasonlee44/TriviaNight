@@ -5,9 +5,10 @@
 </head>
 <body>
     <div class="topnav" id="myTopnav">
-        <a href="#">Home</a>
-        <a href="#">Friends</a>
-        <a href="#"> (pic) James</a>
+        <img id="logoImg" src='trivia-night.png' alt="logo" width=8% height=9%>
+        <a href="" id="homeBtn" onclick="homeBtn()">Home</a>
+        <a href="">Friends</a>
+        <a href=""> (pic) James</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
@@ -16,7 +17,7 @@
       <h4><font size="4"> (pic) James </font></h4>
         <div class="sectionleft2">
           <p><font size="3"> Trivia Games</font></p>
-            <a href="#"><button style="width:205px; text-align:left;" class="btn"> <img src="http://www.myiconfinder.com/uploads/iconsets/93d6a0d17d38f2153741af30cad5b41e.png" width="30px" length="30px" align="left">  Books</button><br></a>
+            <a href="#"><button style="width:205px; text-align:left;" id="booksBtn" onclick="booksBtn()" class="btn"> <img src="http://www.myiconfinder.com/uploads/iconsets/93d6a0d17d38f2153741af30cad5b41e.png" width="30px" length="30px" align="left">  Books</button><br></a>
             <a href="#"><button style="width:205px; text-align:left;" class="btn"> <img src="http://abctechnologies.com/wp-content/uploads/icon-film.png" width="30px" lengths="30px" align="middle">  Film </button> <br></a>
             <a href="#"><button style="width:205px; text-align:left;" class="btn"> <img src="http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/512/Music-icon.png" width="30px" lengths="30px" align="middle">  Music </button> <br></a>
             <a href="#"><button style="width:205px; text-align:left;" class="btn"> <img src="http://icons.iconarchive.com/icons/flat-icons.com/flat/256/Flat-TV-icon.png" width="30px" lengths="30px" align="middle">  Television</button> <br></a>
@@ -31,7 +32,7 @@
         </div>
     </div>
     <div class="section-middle">
-      <div class="verticalLine">
+      <div class="verticalLine" id="middle-section">
         <center>
             <font size="10">
               <p><font size="1"color="#f6f6f6" >.</font></p>
@@ -108,6 +109,11 @@
 
 }
 
+#logoImg{
+  margin-left: 20px;
+  margin-top:2px;
+}
+
 p.big{
   line-height: 40px;
 }
@@ -115,6 +121,7 @@ p.big{
 body {
 	margin: 0;
 	background: #e3e3e7;
+  /* #e3e3e7 */
 	font-family: 'Calibri', sans-serif;
 	font-weight: 500;
 }
@@ -140,7 +147,7 @@ input[type=text]:focus {
 }
 
 .btn {
-  background-color: #e1e4eb;
+  background-color: #e3e3e7;
   border: none;
   border-radius: 3px;
   color: black;
@@ -159,7 +166,8 @@ input[type=text]:focus {
 
 .topnav {
   overflow: hidden;
-  background-color: #4067b4;
+  background-color:rgb(250,83,83);
+  /* #4067b4 */
 }
 
 .topnav a {
@@ -188,6 +196,46 @@ input[type=text]:focus {
   display: none;
 }
 
+.slidecontainer {
+  width: 50%;
+  padding-top: 20px;
+
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4067b4;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4067b4;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
@@ -213,6 +261,8 @@ input[type=text]:focus {
 </style>
 
 <script>
+
+  // topnav function
   function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -220,7 +270,72 @@ input[type=text]:focus {
     } else {
       x.className = "topnav";
     }
+  } // end of topnav function
+
+  // click home button
+  function homeBtn(){ 
+    document.getElementById("middle-section").innerHTML = `
+          <center>
+            <font size="10">
+              <p><font size="1"color="#f6f6f6" >.</font></p>
+              <p>Welcome to</p><br>
+              <p> Trivia <font color="#f6f6f6">...</font>Night!</p>
+              <p><font size="10"color="#f6f6f6">.</font></p>
+              <p><font size="3">Select Trivia Game<br><p>On The Left to Begin</font></p>
+            </font>
+        </center>`
+    console.log("ok");
+  } // end of homeBtn function
+
+  var diff;
+  var cate;
+  var questionVal;
+  
+  function booksBtn(){ // select books option
+    cate = 10; // set category to books
+    document.getElementById("middle-section").innerHTML = ` 
+    <font size='4px'><center><h2>Category: Books</h2></center></font>
+            <center> <p> Difficulty</p>
+            <select id='difficulty'>
+              <option value='easy'>Easy</option>
+              <option value='medium'>Medium</option>
+              <option value='hard'>Hard</option>
+            </select>
+            <div class='slidecontainer'>
+              <h5>Number of Questions</h5>
+              <input id='myRange' class='slider' type="range" min="5" max="15" step="1" value="10">
+              <p id="demo">10</p>
+            </div>
+            <button id='submitBtn' onclick='submit()'>Submit!</button>
+          </center>`
+
+    // getting value of slider and outputting on screen
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
+  } // end of booksBtn function
+
+  function submit(){
+
+    var diff = document.getElementById("difficulty").value;
+    var questionVal = document.getElementById("myRange").value
+
+    // getting API
+    var request = new XMLHttpRequest()
+
+    request.open('GET', 'https://opentdb.com/api.php?amount='+questionVal+'&category='+cate+'&difficulty='+diff+'&type=multiple', true)
+    request.onload = function() {
+    data = JSON.parse(this.response)
+        console.log(data['results'])
+        state = 0
+    }
+    request.send()
   }
+
+  
 </script>
 
 </html>
