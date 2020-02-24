@@ -8,7 +8,7 @@
         <img id="logoImg" src='trivia-night.png' alt="logo" width=8% height=9%>
         <a href="" id="homeBtn" onclick="homeBtn()">Home</a>
         <a href="">Friends</a>
-        <a href=""> James</a>
+        <a href="" id="displayUserName"> j</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
@@ -58,7 +58,7 @@
           </p>
         </div>
     </div>
-
+  <button onclick="signout()">Sign Out</button>
 <footer>
 </footer>
 </body>
@@ -599,7 +599,7 @@ footer{
   var questionVal; // number of questions
 
   var data;
-  var state = 0; // which question number is being outputted
+  var state; // which question number is being outputted
 
   function submit(){ // user click submit button
     order = [];
@@ -631,18 +631,28 @@ footer{
       order.sort(() => Math.random() - 0.5); //randomizes the answers
       document.getElementById("middle-section").innerHTML = data['results'][state]['question'] + `
       <div id="answerBtnSection">
-        <button id="btn1"></button> <br>
-        <button id="btn2"></button> <br>
-        <button id="btn3"></button> <br>
-        <button id="btn4"></button>
+        <button id="btn1" onclick="clickAnswer()"></button> <br>
+        <button id="btn2" onclick="clickAnswer()"></button> <br>
+        <button id="btn3" onclick="clickAnswer()"></button> <br>
+        <button id="btn4" onclick="clickAnswer()"></button>
       </div>
       `
       for(i=1;i<5;i++){ //putting the answer onto the buttons
         document.getElementById('btn'.concat(i)).innerHTML = order[i-1]
       }
-      state = state+1;
     }   
+    else{
+      document.getElementById("middle-section").innerHTML = "<center>Good job!<\center>"
+    }
+  }
+  
+  function clickAnswer(){
+    state = state+1;
+    order = [];
+    correct = "";
+    displayQuestion()
+    console.log(state)
   }
 
-  
+
 </script>
