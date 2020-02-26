@@ -2,19 +2,23 @@
 <head>
     <title>Trivia Night</title>
     <link rel="icon" href="https://pngimage.net/wp-content/uploads/2018/06/trivia-icon-png.png">
+    <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
     <div class="topnav" id="myTopnav">
         <img id="logoImg" src='trivia-night.png' alt="logo" width=8% height=9%>
         <a href="" id="homeBtn" onclick="homeBtn()">Home</a>
         <a href="">Friends</a>
-        <a href="" id="displayUserName"> j</a>
+        <a href="" id="displayUserName"></a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
     </div>
     <div class="sectionleft">
-      <h4><font size="4"> (pic) James </font></h4>
+      <img id="userPic" height=40 width=40></img>
+      <h4 id="displayUserName2"><font size="4"></font></h4>
         <div class="sectionleft2">
           <p><font size="3"> Trivia Games</font></p>
             <a><button style="width:205px; text-align:left;" id="booksBtn" onclick="booksBtn()" class="btn"> <img src="http://www.myiconfinder.com/uploads/iconsets/93d6a0d17d38f2153741af30cad5b41e.png" width="30px" length="30px" align="left">  Books</button><br></a>
@@ -46,7 +50,7 @@
     </div>
     <div class="section-right">
       <font family="verdana" size="4px">   
-      <p><u>Highscores</u></p>
+      <p><u>Leaderboard</u></p>
       </font>
         <div class="section-right2">
           <p class="big">
@@ -59,8 +63,6 @@
         </div>
     </div>
   <button onclick="signout()">Sign Out</button>
-<footer>
-</footer>
 </body>
 </html>
 
@@ -118,6 +120,16 @@
   margin-top:3px;
 }
 
+#userPic{
+  border-radius: 50%;
+  position: relative;
+  /* padding: 5px; */
+  float:left;
+  background-color: white;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
 p.big{
   line-height: 40px;
 }
@@ -149,11 +161,6 @@ input[type=text] {
 input[type=text]:focus {
   width: 80%;
 }
-
-footer{
-  position
-}
-
 
 .btn {
   background-color: #e3e3e7;
@@ -281,8 +288,7 @@ footer{
     }
   } // end of topnav function
 
-  // click home button
-  function homeBtn(){ 
+  function homeBtn(){ // click home button
     document.getElementById("middle-section").innerHTML = `
           <center>
             <font size="10">
@@ -600,6 +606,7 @@ footer{
 
   var data;
   var state; // which question number is being outputted
+  var score;
 
   function submit(){ // user click submit button
     order = [];
@@ -612,29 +619,28 @@ footer{
     request.onload = function() {
     data = JSON.parse(this.response)
         console.log(data['results'])
-        state = 0
+        state = 0;
+        score = 0;
         displayQuestion()
     }
     request.send()
   } // end of submit function
   
   let order = []; // to store all answers for each question
-  var correct = ""; // to store the value of the correct answer
 
   function displayQuestion(){
     if(state != data['results'].length){
       order.push(data['results'][state]['correct_answer']) // adding the correct answer to array
-      correct = data['results'][state]['correct_answer']
       for(i=0;i<3;i++){ // adding incorrect answers to array
         order.push(data['results'][state]['incorrect_answers'][i])
       }
       order.sort(() => Math.random() - 0.5); //randomizes the answers
       document.getElementById("middle-section").innerHTML = data['results'][state]['question'] + `
       <div id="answerBtnSection">
-        <button id="btn1" onclick="clickAnswer()"></button> <br>
-        <button id="btn2" onclick="clickAnswer()"></button> <br>
-        <button id="btn3" onclick="clickAnswer()"></button> <br>
-        <button id="btn4" onclick="clickAnswer()"></button>
+        <button id="btn1" onclick="clickAnswer(this.id)"></button> <br>
+        <button id="btn2" onclick="clickAnswer(this.id)"></button> <br>
+        <button id="btn3" onclick="clickAnswer(this.id)"></button> <br>
+        <button id="btn4" onclick="clickAnswer(this.id)"></button>
       </div>
       `
       for(i=1;i<5;i++){ //putting the answer onto the buttons
@@ -642,17 +648,78 @@ footer{
       }
     }   
     else{
-      document.getElementById("middle-section").innerHTML = "<center>Good job!<\center>"
+      document.getElementById("middle-section").innerHTML = "<center>Good job! You got a score of: "+score+"<\center>"
     }
   }
   
-  function clickAnswer(){
-    state = state+1;
+  function clickAnswer(clicked_id){
     order = [];
-    correct = "";
-    displayQuestion()
     console.log(state)
+    if (document.getElementById(clicked_id).innerHTML == data['results'][state]['correct_answer']){
+      alert("Correct")
+      score++;
+    }
+    else{
+      alert("Incorrect: " + data['results'][state]['correct_answer'])
+    }
+    state++;
+    displayQuestion()
   }
 
 
+  var firebaseConfig = {
+    apiKey: "AIzaSyCYNDNxnGUOAD6g9N1GhpfgbBiq_-O_7BU",
+    authDomain: "trivianight-b4745.firebaseapp.com",
+    databaseURL: "https://trivianight-b4745.firebaseio.com",
+    projectId: "trivianight-b4745",
+    storageBucket: "trivianight-b4745.appspot.com",
+    messagingSenderId: "985127241790",
+    appId: "1:985127241790:web:d36213ec7a7deaf8d8e96f"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+          
+  // Check to see if you are logged in
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user == null) {
+        document.getElementById("middle-section").innerHTML = "<center><h3>You are not logged in</h3></center>";
+        return;
+    } else {
+      document.getElementById("displayUserName").innerHTML = user.displayName
+      document.getElementById("displayUserName2").innerHTML = user.displayName
+      document.getElementById("userPic").src = user.photoURL;
+      userId = user.uid;
+      userEmail = user.email // you can also get .displayName, .photoURL, .email
+      firebase.database().ref('users/' + userId + '/userInfo').update({email: userEmail});        
+    } // end user null check
+  }); // end check auth state
+      
+  // HERE IS THE FUNCTION TO SHOW HOW TO PUSH/ADD NEW USER DATA TO EXISTING DATABASE
+  function pushData() {
+    var userId = document.getElementById("uid").innerHTML;
+    var js_time = Date.now();
+    var tweetid = firebase.database().ref('users/' + userId + "/messages").push({tweet: "testing", time: js_time});
+  }
+
+  // HERE IS THE FUNCTION TO SHOW HOW TO REMOVE USER DATA FROM EXISTING DATABASE - BE CAREFUL!
+  function removeData() {
+    var tweetid = firebase.database().ref('tweets/' + userId + "/").remove();
+  }
+
+  function signin() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider).then(function(result) { 
+        // window.location.replace("fbtest.html"); 
+    });
+  }
+
+  function signout() {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+    }).catch(function(error) {
+        // An error happened.
+    });
+    location.reload();
+    window.location.href = "login.html"
+  }
 </script>
