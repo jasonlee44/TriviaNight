@@ -36,6 +36,7 @@
       <div class="verticalLine" id="middle-section">
         <center>
             <font size="10">
+              <p></p>
               <p>Welcome to</p><br>
               <p> Trivia Night!</p>
               <br>
@@ -123,7 +124,7 @@ body {
 	margin: 0;
 	background: #e3e3e7;
   /* #e3e3e7 */
-  font-family: Muli;
+	font-family: Muli;
 	font-weight: 500;
 }
 
@@ -146,6 +147,7 @@ input[type=text] {
 input[type=text]:focus {
   width: 80%;
 }
+
 
 .btn {
   background-color: #e3e3e7;
@@ -176,7 +178,7 @@ input[type=text]:focus {
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 23px 16px;
+  padding: 24px 17px;
   padding-right: 30px;
   text-decoration: none;
   height: 21px;
@@ -235,6 +237,31 @@ input[type=text]:focus {
   border-radius: 50%;
   background: #4067b4;
   cursor: pointer;
+}
+
+.section-question {
+  height:20px;
+  width: 100%;
+  background-color: white;
+
+}
+
+.example_d {
+color: black !important;
+text-transform: uppercase;
+background: white;
+padding: 15px;
+border: 2px solid black !important;
+border-radius: 6px;
+display: inline-block;
+transition: all 0.3s ease 0s;
+}
+
+.example_d:hover {
+color: #494949 !important;
+border-radius: 50px;
+border-color: #494949 !important;
+transition: all 0.3s ease 0s;
 }
 
 @media screen and (max-width: 600px) {
@@ -590,20 +617,64 @@ input[type=text]:focus {
   var cate; // category of questions
   var questionVal; // number of questions
 
-  function submit(){
-    var diff = document.getElementById("difficulty").value;
-    var questionVal = document.getElementById("myRange").value
+  var data;
+  var state; // which question number is being outputted
 
+  function submit(){ // user click submit button
+    order = [];
+    correct = "";
+    diff = document.getElementById("difficulty").value;
+    questionVal = document.getElementById("myRange").value
     // getting API
     var request = new XMLHttpRequest()
-
     request.open('GET', 'https://opentdb.com/api.php?amount='+questionVal+'&category='+cate+'&difficulty='+diff+'&type=multiple', true)
     request.onload = function() {
     data = JSON.parse(this.response)
         console.log(data['results'])
         state = 0
+        displayQuestion()
     }
     request.send()
+  } // end of submit function
+  
+  let order = []; // to store all answers for each question
+  var correct = ""; // to store the value of the correct answer
+
+  function displayQuestion(){
+    if(state != data['results'].length){
+      order.push(data['results'][state]['correct_answer']) // adding the correct answer to array
+      correct = data['results'][state]['correct_answer']
+      for(i=0;i<3;i++){ // adding incorrect answers to array
+        order.push(data['results'][state]['incorrect_answers'][i])
+      }
+      order.sort(() => Math.random() - 0.5); //randomizes the answers
+      document.getElementById("middle-section").innerHTML = `<center><div class="section-question">` + data['results'][state]['question'] + `
+      </div><div id="answerBtnSection">
+        <br>
+        <div class="button_cont" align="center">
+        <button class="example_d" id="btn1" onclick="clickAnswer()"></button> 
+        <button class="example_d" id="btn2" onclick="clickAnswer()"></button> <br>
+        <button class="example_d" id="btn3" onclick="clickAnswer()"></button> 
+        <button class="example_d" id="btn4" onclick="clickAnswer()"></button>
+        </div>
+      </div> 
+      `
+      for(i=1;i<5;i++){ //putting the answer onto the buttons
+        document.getElementById('btn'.concat(i)).innerHTML = order[i-1]
+      }
+    }   
+    else{
+      document.getElementById("middle-section").innerHTML = "<center>Good job!<\center>"
+    }
   }
   
+  function clickAnswer(){
+    state = state+1;
+    order = [];
+    correct = "";
+    displayQuestion()
+    console.log(state)
+  }
+
+
 </script>
