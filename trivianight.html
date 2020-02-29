@@ -1,14 +1,15 @@
 <html>
 <head>
     <title>Trivia Night</title>
-    <link rel="icon" href="https://pngimage.net/wp-content/uploads/2018/06/trivia-icon-png.png">
+    <link rel="icon" href="trivianighticon.png">
     <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
     <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="topnav" id="myTopnav">
-        <img id="logoImg" src='trivia-night.png' alt="logo" width=8% height=9%>
+        <img id="logoImg" src='trivianighticon.png' alt="logo" width=50px height=50px>
         <a href="" id="homeBtn" onclick="homeBtn()">Home</a>
         <a href="">Friends</a>
         <a href="" id="displayUserName"></a>
@@ -68,11 +69,11 @@
 
 <style>
 .sectionleft {
-    width: 18.5%;
-    float:left;
-    margin-left: 37px;
-    font-family: verdana;
-    margin-top: 20px;
+  width: 18.5%;
+  float:left;
+  margin-left: 37px;
+  font-family: Muli;
+  margin-top: 20px;
 }
 
 .sectionleft2 {
@@ -87,7 +88,7 @@
   height: 700px;
   background-color: #f6f6f6;
   color: black;
-  font-family: verdana;
+  font-family: Muli;
   border-radius: 5px;
   border-style: solid;
   border-width: thin;
@@ -107,7 +108,7 @@
   border-width: thin;
   border-color: #adadad; 
   color: black;
-  font-family: verdana;
+  font-family: Muli;
 }
 
 .section-right2{
@@ -138,7 +139,7 @@ body {
 	margin: 0;
 	background: #e3e3e7;
   /* #e3e3e7 */
-	font-family: 'Calibri', sans-serif;
+	font-family: Muli;
 	font-weight: 500;
 }
 
@@ -186,15 +187,21 @@ input[type=text]:focus {
   /* #4067b4 */
 }
 
+.topnav {
+  overflow: hidden;
+  background-color:rgb(55, 78, 181);
+  /* #4067b4 */
+}
+
 .topnav a {
   float: right;
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 23px 16px;
+  padding: 24px 17px;
   padding-right: 30px;
   text-decoration: none;
-  height: 21px;
+  height: 14px;
   font-size: 17px;
 }
 
@@ -252,6 +259,117 @@ input[type=text]:focus {
   cursor: pointer;
 }
 
+.section-question {
+  height:130px;
+  width: 100%;
+  background-color: #f6f6f6;
+  border-radius:6px; 
+  text-align: center;
+}
+/* Chong section */
+.question-margin {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align:center;
+  padding-top: 10px;
+}
+
+.example_a {
+    color: black !important;
+    text-transform: capitalize;
+    background: white;
+    padding: 15px;
+    border: 4px solid blue !important;
+    border-radius: 6px;
+    display: block;
+    transition: all 0.6s ease 0s;
+    font-size: 25px;
+    width: 43.5%;
+    height: 220px;
+    margin-left: 34px;
+    float: left;
+    margin-top: 10px;
+}
+
+.example_a:hover {
+    color: #494949 !important;
+    border-radius: 50px;
+    border-color: #494949 !important;
+    transition: all 0.6s ease 0s;
+}
+
+.example_b {
+    color: black !important;
+    text-transform: capitalize;
+    background: white;
+    padding: 15px;
+    border: 4px solid red !important;
+    border-radius: 6px;
+    display: block;
+    transition: all 0.6s ease 0s;
+    font-size: 25px;
+    width: 43.5%;
+    height: 220px;
+    margin-right: 34px;
+    float: right;
+    margin-top:10px;
+}
+
+.example_b:hover {
+    color: #494949 !important;
+    border-radius: 50px;
+    border-color: #494949 !important;
+    transition: all 0.6s ease 0s;
+}
+
+.example_c {
+    color: black !important;
+    text-transform: capitalize;
+    background: white;
+    padding: 15px;
+    border: 4px solid green !important;
+    border-radius: 6px;
+    display: block;
+    transition: all 0.6s ease 0s;
+    font-size: 25px;
+    width: 43.5%;
+    height: 220px;
+    float: left;
+    margin-left: 34px;
+    margin-top: 30px;
+}
+
+.example_c:hover {
+    color: #494949 !important;
+    border-radius: 50px;
+    border-color: #494949 !important;
+    transition: all 0.6s ease 0s;
+}
+
+.example_d {
+    color: black !important;
+    text-transform: capitalize;
+    background: white;
+    padding: 15px;
+    border: 4px solid orange !important;
+    border-radius: 6px;
+    display: block;
+    transition: all 0.6s ease 0s;
+    font-size: 25px;
+    width: 43.5%;
+    height: 220px;
+    float: right;
+    margin-right: 34px;
+    margin-top: 30px;
+}
+
+.example_d:hover {
+    color: #494949 !important;
+    border-radius: 50px;
+    border-color: #494949 !important;
+    transition: all 0.6s ease 0s;
+}
+
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
@@ -277,7 +395,6 @@ input[type=text]:focus {
 </style>
 
 <script>
-
   // topnav function
   function myFunction() {
     var x = document.getElementById("myTopnav");
@@ -305,7 +422,7 @@ input[type=text]:focus {
   function booksBtn(){ // select books option
     cate = 10; // set category to books
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Books</h2></center></font>
+    <font size='4px'><center><h2> Books<img src="https://img.icons8.com/plasticine/2x/book.png" width="40px" length="40px" align="top"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -330,7 +447,7 @@ input[type=text]:focus {
   function filmBtn(){ // select film option
     cate = 11; // set category to books
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Film</h2></center></font>
+    <font size='4px'><center><h2> Film <img src="https://icons.iconarchive.com/icons/designbolts/free-multimedia/512/Film-icon.png" width="35px" lengths="35px" align="top"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -355,7 +472,7 @@ input[type=text]:focus {
   function musicBtn(){ // select music option
     cate = 12; // set category to music
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Music</h2></center></font>
+    <font size='4px'><center><h2> Music <img src="https://image.flaticon.com/icons/png/512/122/122320.png" width="28px" lengths="28px" align="top"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -380,7 +497,7 @@ input[type=text]:focus {
   function tvBtn(){ // select tv option
     cate = 14; // set category to tv
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Television</h2></center></font>
+    <font size='4px'><center><h2>Television<img src="https://www.pngkit.com/png/detail/920-9203959_television-transparent-tv-icon-png.png" width="50px" lengths="50px" align="top"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -405,7 +522,7 @@ input[type=text]:focus {
   function gamesBtn(){ // select video games option
     cate = 15; // set category to video games
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Video Games</h2></center></font>
+    <font size='4px'><center><h2>Video Games <img src="https://www.netclipart.com/pp/m/4-42829_video-game-controller-icon-video-games-icon-png.png" width="40px" lengths="40px" align="top"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -430,7 +547,7 @@ input[type=text]:focus {
   function scienceBtn(){ // select science and nature option
     cate = 17; // set category to science and nature
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Science and Nature</h2></center></font>
+    <font size='4px'><center><h2>Science and Nature <img src="https://cdn2.iconfinder.com/data/icons/science-flat-style-1/64/science-atom-education-nuclear-physics-atomic-Electron-512.png" width="40px" lengths="40px" align="center"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -455,7 +572,7 @@ input[type=text]:focus {
   function compBtn(){ // select computers option
     cate = 18; // set category to computers
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Computers</h2></center></font>
+    <font size='4px'><center><h2>Computers <img src="https://images.vexels.com/media/users/3/128243/isolated/preview/a1a5b9494d50bb3754bba547f2d88487-computer-monitor-flat-icon-by-vexels.png" width="37px" lengths="37px" align="center"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -480,7 +597,7 @@ input[type=text]:focus {
   function mathBtn(){ // select math option
     cate = 19; // set category to math
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Math</h2></center></font>
+    <font size='4px'><center><h2>Math <img src="https://www.pngitem.com/pimgs/m/79-792168_calculator-icon-math-icon-png-transparent-png.png" width="35px" lengths="35px" align="center"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='medium'>Medium</option>
@@ -503,7 +620,7 @@ input[type=text]:focus {
   function sportsBtn(){ // select sports option
     cate = 21; // set category to sports
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Sports</h2></center></font>
+    <font size='4px'><center><h2>Sports <img src="https://cdn4.iconfinder.com/data/icons/education-training/33/sports-512.png" width="38px" lengths="38px" align="top"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -528,7 +645,7 @@ input[type=text]:focus {
   function geoBtn(){ // select geography option
     cate = 22; // set category to geography
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Geography</h2></center></font>
+    <font size='4px'><center><h2>Geography<img src="https://library.kissclipart.com/20180831/tyq/kissclipart-geography-icon-png-clipart-computer-icons-clip-art-7fea630a7804b597.jpg" width="70px" lengths="70px" align="center"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -553,7 +670,7 @@ input[type=text]:focus {
   function historyBtn(){ // select history option
     cate = 23; // set category to history
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: History</h2></center></font>
+    <font size='4px'><center><h2>History<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTp2TA3FWgpBtHJjz-1DN1x1TX8ffwg0IlVBgdXujgbu2L_lR8-" width="53px" lengths="53px" align="center"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -578,7 +695,7 @@ input[type=text]:focus {
   function animalsBtn(){ // select animals option
     cate = 27; // set category to animals
     document.getElementById("middle-section").innerHTML = ` 
-    <font size='4px'><center><h2>Category: Animals</h2></center></font>
+    <font size='4px'><center><h2>Animals<img src="https://www.netclipart.com/pp/m/246-2462137_animals-icon-png.png" width="43px" lengths="43px" align="top"></h2></center></font>
             <center> <p> Difficulty</p>
             <select id='difficulty'>
               <option value='easy'>Easy</option>
@@ -635,20 +752,29 @@ input[type=text]:focus {
         order.push(data['results'][state]['incorrect_answers'][i])
       }
       order.sort(() => Math.random() - 0.5); //randomizes the answers
-      document.getElementById("middle-section").innerHTML = data['results'][state]['question'] + `
-      <div id="answerBtnSection">
-        <button id="btn1" onclick="clickAnswer(this.id)"></button> <br>
-        <button id="btn2" onclick="clickAnswer(this.id)"></button> <br>
-        <button id="btn3" onclick="clickAnswer(this.id)"></button> <br>
-        <button id="btn4" onclick="clickAnswer(this.id)"></button>
-      </div>
-      `
+      document.getElementById("middle-section").innerHTML = `
+      <center>
+        <div class="section-question">
+          <div class="question-margin">
+              <font size=6px>` + data['results'][state]['question'] + `
+              </font>
+            </div>
+          </div>
+        <div id="answerBtnSection">
+        <br>
+        <div class="button_cont" align="center">
+          <button class="example_a" id="btn1" onclick="clickAnswer(this.id)"></button> 
+          <button class="example_b" id="btn2" onclick="clickAnswer(this.id)"></button> <br>
+          <button class="example_c" id="btn3" onclick="clickAnswer(this.id)"></button> 
+          <button class="example_d" id="btn4" onclick="clickAnswer(this.id)"></button> 
+        </div>
+      </div>`
       for(i=1;i<5;i++){ //putting the answer onto the buttons
         document.getElementById('btn'.concat(i)).innerHTML = order[i-1]
       }
     }   
     else{
-      document.getElementById("middle-section").innerHTML = "<center>Good job! You got a score of: "+score+"<\center>"
+      document.getElementById("middle-section").innerHTML = "<center><h2>You got a score of: "+score+"</h2></center>"
     }
   }
   
