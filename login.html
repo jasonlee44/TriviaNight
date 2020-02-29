@@ -1,6 +1,6 @@
-<!DOCTYPE html>
 <html>
     <head>
+        <title>Login to Trivia Night</title>
         <!-- HERE ARE YOUR FIREBASE and GOOGLE AUTHENICATION IMPORTS -->
         <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -11,44 +11,59 @@
             <h1 id="welcomeMsg"></h1>
             <p id="uid"></p>
             <div id="info"></div>
-                <div class="card">
-                    <button class="login-btn" onclick="signin()" style="background-color: rgb(201, 195, 206);">
-                        <img src="Img/login_1.png" class="img-bottom">
-                        <img src="Img/login_2.png" class="img-top">
-                    </button>
-                </div>
-            <center><img src="trivianighticon.png" width=25% height=25% style="margin-top:5px;"></center>
         </div>
         <footer style="margin-top:11%;">Created by Jason Lee & Christopher Chong</footer>
     </body>
 </html>
 
 <style>
-    body{
-        font-family: Muli;
-        background-color: rgb(201, 195, 206);
-    }
-    .card {
-        margin: auto;
-        /* border: 1px solid black; */
-        width:60%;
-        text-align: center;
-    }
-    .card .img-top {
-        display: none;
-    }
-    .card:hover .img-top {
-        display:inline-block;
-    }
-    .card .img-bottom {
-        display: inline;
-    }
-    .card:hover .img-bottom {
-        display:none;
-    }
-    .login-btn{
-        border: none;
-    }
+body{
+    font-family: Muli;
+    background-color: rgb(201, 195, 206);
+}
+.card {
+    margin: auto;
+    /* border: 1px solid black; */
+    width:60%;
+    text-align: center;
+}
+.card .img-top {
+    display: none;
+}
+.card:hover .img-top {
+    display:inline-block;
+}
+.card .img-bottom {
+    display: inline;
+}
+.card:hover .img-bottom {
+    display:none;
+}
+.login-btn{
+    border: none;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    margin-top:70px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 </style>
 <script>
     var firebaseConfig = {
@@ -65,45 +80,37 @@
             
     // Check to see if you are logged in
     firebase.auth().onAuthStateChanged(function(user) {
-        if (user == null) {
+        if (user == null) { // if not logged in
+            document.getElementById("info").innerHTML = `
+            <div class="card">
+                <button class="login-btn" onclick="signin()" style="background-color: rgb(201, 195, 206);">
+                    <img src="Img/login_1.png" class="img-bottom">
+                    <img src="Img/login_2.png" class="img-top">
+                </button>
+            </div>
+            <center><img src="trivianighticon.png" width=420px height=420px style="margin-top:5px;"></center>
+            `
             document.getElementById("welcomeMsg").innerHTML = "<center><font style='font-family: Muli;'>Login to Trivia Night<font></center>";
             return;
-        } else {
+        } else { // if logged in
             userId = user.uid;
             userEmail = user.email // you can also get .displayName, .photoURL, .email
-            document.getElementById("uid").innerHTML = userEmail; // display Google uid on page
-            document.getElementById("welcomeMsg").innerHTML = "Welcome to Trivia Night";
-            firebase.database().ref('users/' + userId + '/userInfo').update({email: userEmail});
-            window.location.href = "trivianight.html"
+            document.getElementById('info').innerHTML = " "
+            document.getElementById("welcomeMsg").innerHTML = "<center>Welcome to Trivia Night</center>";
+            document.getElementById("uid").innerHTML = `
+            <center>` +user.displayName+ `!</center>
+            <center><div class='loader'></div></center>
+            <center><h3>You will be redirected shortly</h3></center>
+            `;
+            firebase.database().ref('users/' + userId + '/userInfo').update({email: userEmail}).catch(function(error){alert("Data could not be saved." + error);});
+            window.location.href = "index.html"
             
         } // end user null check
     }); // end check auth state
 
-    // HERE IS THE FUNCTION TO SHOW HOW TO GET USER DATA
-    function getData() {
-        var userId = document.getElementById("uid").innerHTML;
-        firebase.database().ref('/tweets/' + userId).once('value', function(snapshot) {
-            console.log(snapshot.val());
-        });
-
-    }
-        
-    // HERE IS THE FUNCTION TO SHOW HOW TO PUSH/ADD NEW USER DATA TO EXISTING DATABASE
-    function pushData() {
-        var userId = document.getElementById("uid").innerHTML;
-        var js_time = Date.now();
-        var tweetid = firebase.database().ref('users/' + userId + "/messages").push({tweet: "testing", time: js_time});
-    }
-
-    // HERE IS THE FUNCTION TO SHOW HOW TO REMOVE USER DATA FROM EXISTING DATABASE - BE CAREFUL!
-    function removeData() {
-        var tweetid = firebase.database().ref('tweets/' + userId + "/").remove();
-    }
-
     function signin() {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithRedirect(provider).then(function(result) { 
-            // window.location.replace("fbtest.html"); 
         });
     }
 
