@@ -13,7 +13,7 @@
         <!-- <img id="logoImg" src='trivianight_long.png' alt="logo" width=110px height=60px> -->
         <a style="float:left; font-family: 'Great Vibes'; font-size: 30;">Trivia Night</a>
         <a href="" id="homeBtn" onclick="homeBtn()">Home</a>
-        <a href="friends.html">Friends</a>
+        <!-- <a href="friends.html">Friends</a>  -->
           <div class="dropdown">
             <a class="dropbtn" id='displayUserName'> 
               <i class="fa fa-caret-down"></i>
@@ -71,9 +71,9 @@
           </p>
         </div>
     </div>
-    <footer style="margin-top:52%; margin-left:10px;">&#169;2020 Trivia Night, Inc | 
-      <a href="https://github.com/jasonlee44/jasonlee44.github.io">GitHub</a> |
-      <a href="https://opentdb.com/api_config.php">Trivia API</a>
+    <footer style="margin-top:52%; margin-left:10px; font-size: 14;">&#169;2020 Trivia Night, Inc. | 
+      <a href="https://github.com/jasonlee44/jasonlee44.github.io" target="_blank">GitHub</a> |
+      <a href="https://opentdb.com/api_config.php" target="_blank">Trivia API</a>
     </footer>
 </body>
 </html>
@@ -688,7 +688,7 @@ input[type=text]:focus {
             </select>
             <div class='slidecontainer'>
               <h5>Number of Questions</h5>
-              <input id='myRange' class='slider' type="range" min="5" max="15" step="1" value="10">
+              <input id='myRange' class='slider' type="range" min="5" max="14" step="1" value="10">
               <p id="demo">10</p>
             </div>
             <button id='submitBtn' onclick='submit()'>Submit!</button>
@@ -804,7 +804,7 @@ input[type=text]:focus {
   
   let order = []; // to store all answers for each question
 
-  function displayQuestion(){
+  function displayQuestion(){ // took so long... 
     if(state != data['results'].length){
       order.push(data['results'][state]['correct_answer']) // adding the correct answer to array
       for(i=0;i<3;i++){ // adding incorrect answers to array
@@ -833,7 +833,7 @@ input[type=text]:focus {
         document.getElementById('btn'.concat(i)).innerHTML = order[i-1]
       }
     }   
-    else{
+    else{ // once user answers all trivia questions
       firebase.database().ref('users/' + userId + '/userInfo' + '/score').once('value', function(snapshot) {
         console.log("firebase score: "+snapshot.val())
         document.getElementById("middle-section").innerHTML = "<center><h2>You got "+score+" out of "+questionVal+" questions correct</h2></center><br>"
@@ -856,7 +856,6 @@ input[type=text]:focus {
       // alert("Incorrect: " + data['results'][state]['correct_answer'])
       document.getElementById("checkDisplay").innerHTML = "<p style='color:red;'>Incorrect!</p>"
     }
-    
     state++;
     displayQuestion()
   }
@@ -878,8 +877,8 @@ input[type=text]:focus {
     if (user == null) {
         document.getElementById("middle-section").innerHTML = `
         <center><h3>You are not logged in</h3></center><br>
-        <center><button onclick='redirect()'>Login</button></center>
         `;
+        redirect()
         return;
     } else { // if logged in
       userId = user.uid;
@@ -891,11 +890,10 @@ input[type=text]:focus {
 
       firebase.database().ref('users/' + userId).once('value', function(snapshot) {
         // console.log(Object.values(snapshot.val())[0]['score'])
-        if(Object.values(snapshot.val())[0]['score'] == null){
+        if(Object.values(snapshot.val())[0]['score'] == null){ // if no points stored in firebase, add 0
           firebase.database().ref('users/' + userId + '/userInfo').update({score: 0}).catch(function(error){alert("Error occured" + error);});
         }
       });
-
       document.getElementById("displayUserName").innerHTML = user.displayName
       document.getElementById("displayUserName2").innerHTML = user.displayName
       document.getElementById("userPic").src = user.photoURL;
