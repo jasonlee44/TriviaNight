@@ -988,6 +988,7 @@ input[type=text]:focus {
           document.getElementById("leaderboard").innerHTML += "<div style='font-size:17; padding-top:45;'>" + "<img src="+snapshot.val()[ordered_leaders[i][0]]['userInfo']['pic']+" height=30 width=30 style='margin-top:0;'>" + snapshot.val()[ordered_leaders[i][0]]['userInfo']['name'].split(" ")[0]+ "&nbsp;&nbsp;-&nbsp;&nbsp;" + ordered_leaders[i][1] + "&nbsp;pts.</div><br>" }
       }
       if(flag===false){
+        document.getElementById("leaderboard").innerHTML += "..."
         document.getElementById("leaderboard").innerHTML += "<div style='font-size:17;  padding-top:45;'>" + "<img src="+ snapshot.val()[userId]['userInfo']['pic'] +" height=30 width=30 style='margin-top:0;'>" + snapshot.val()[userId]['userInfo']['name'].split(" ")[0]+ " (me)" + "&nbsp;&nbsp;-&nbsp;&nbsp;" + snapshot.val()[userId]['userInfo']['score'] + "&nbsp;pts.</div>"
         console.log(snapshot.val()[userId]['userInfo']['pic'])
       }
