@@ -981,11 +981,11 @@ input[type=text]:focus {
       var flag = false;
       for(i=0; i<5; i++){
         if(ordered_leaders[i][0] === userId){
-          document.getElementById("leaderboard").innerHTML += "<div style='font-size:17;  padding-top:45;'>" + "<img src="+snapshot.val()[ordered_leaders[i][0]]['userInfo']['pic']+" height=30 width=30 style='margin-top:0; border-radius: 10px;'>" + snapshot.val()[ordered_leaders[i][0]]['userInfo']['name'].split(" ")[0]+ " (me)" + "&nbsp;&nbsp;-&nbsp;&nbsp;" + ordered_leaders[i][1] + "&nbsp;pts.</div>"
+          document.getElementById("leaderboard").innerHTML += "<div style='font-size:17;  padding-top:45;'>" + "<img src="+snapshot.val()[ordered_leaders[i][0]]['userInfo']['pic']+" height=30 width=30 style='margin-top:0; border-radius: 20px;'>" + snapshot.val()[ordered_leaders[i][0]]['userInfo']['name'].split(" ")[0]+ " (me)" + "&nbsp;&nbsp;-&nbsp;&nbsp;" + ordered_leaders[i][1] + "&nbsp;pts.</div>"
           flag = true;
         }
         else{
-          document.getElementById("leaderboard").innerHTML += "<div style='font-size:17; padding-top:45;'>" + "<img src="+snapshot.val()[ordered_leaders[i][0]]['userInfo']['pic']+" height=30 width=30 style='margin-top:0; border-radius: 10px;'>" + snapshot.val()[ordered_leaders[i][0]]['userInfo']['name'].split(" ")[0]+ "&nbsp;&nbsp;-&nbsp;&nbsp;" + ordered_leaders[i][1] + "&nbsp;pts.</div><br>" }
+          document.getElementById("leaderboard").innerHTML += "<div style='font-size:17; padding-top:45;'>" + "<img src="+snapshot.val()[ordered_leaders[i][0]]['userInfo']['pic']+" height=30 width=30 style='margin-top:0; border-radius: 20px;'>" + snapshot.val()[ordered_leaders[i][0]]['userInfo']['name'].split(" ")[0]+ "&nbsp;&nbsp;-&nbsp;&nbsp;" + ordered_leaders[i][1] + "&nbsp;pts.</div><br>" }
       }
       if(flag===false){
         document.getElementById("leaderboard").innerHTML += "..."
