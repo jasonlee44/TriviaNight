@@ -9,6 +9,6 @@ Used Firebase as the back-end database to store users' information.
 
 Used a trivia API to access trivia questions from various different topics and difficulities.
 
-https://jasonlee44.github.io/
+<a href="https://jasonlee44.github.io/" target="_blank"</a>
 
 ***Website login no longer works***
