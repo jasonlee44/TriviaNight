@@ -1,6 +1,6 @@
 Created by Jason Lee and Christopher Chong
 
-Year 10 Coding Project
+Coding Project
 Tasked to create a user interactive website that implements a back-end database.
 
 Created an online trivia game where users can see where they rank among other players.
